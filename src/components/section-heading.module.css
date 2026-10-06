@@ -1,0 +1,45 @@
+.head {
+  margin-bottom: var(--space-l);
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  margin-bottom: var(--space-m);
+}
+
+.label {
+  flex: none;
+  font-weight: 700;
+}
+
+.index {
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.15rem;
+  background: var(--black);
+  color: var(--white);
+}
+
+.head[data-tone="dark"] .index {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.rule {
+  flex: 1;
+  height: var(--border);
+  background: currentColor;
+}
+
+.title {
+  font-size: var(--fs-display);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.drift {
+  display: inline-block;
+}

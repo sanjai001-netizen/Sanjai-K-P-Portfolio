@@ -1,0 +1,38 @@
+.grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.grid > span {
+  border-right: 1px solid rgb(255 255 255 / 0.06);
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.grid > .on {
+  background:
+    linear-gradient(var(--accent), var(--accent)) center / 6px 6px no-repeat;
+  opacity: 0.55;
+}
+
+.scan {
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(100% / 9);
+  border-top: 1px solid rgb(255 43 32 / 0.5);
+  background: rgb(255 43 32 / 0.06);
+  transform: translateY(-100%);
+}
+
+@media (max-width: 40em) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .grid > span:nth-child(n + 73):not(.scan) {
+    display: none;
+  }
+}

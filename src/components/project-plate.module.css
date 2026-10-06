@@ -1,0 +1,220 @@
+.plate {
+  --plate-bg: var(--black);
+  --plate-fg: var(--white);
+  --plate-line: var(--line-dark);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  height: 100%;
+  background: var(--plate-bg);
+  color: var(--plate-fg);
+  border: var(--border) solid var(--black);
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.plate[data-tone="crimson"] {
+  --plate-bg: var(--crimson);
+  --plate-line: rgb(255 255 255 / 0.22);
+  border-color: var(--crimson);
+}
+
+.plate[data-tone="inverse"] {
+  --plate-bg: var(--white);
+  --plate-fg: var(--black);
+  --plate-line: var(--line);
+  border-color: var(--white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-bottom: var(--border-thin) solid var(--plate-line);
+  font-size: 0.625rem;
+  opacity: 0.75;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  padding: 0.75rem;
+}
+
+/* modules: platform map */
+.modules {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.modules li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.6rem;
+  border: var(--border-thin) solid var(--plate-line);
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+  text-transform: uppercase;
+}
+
+.modules li:first-child {
+  grid-column: span 2;
+  background: var(--accent);
+  color: var(--black);
+  border-color: var(--accent);
+}
+
+.modules li span {
+  font-size: 0.625rem;
+  opacity: 0.8;
+}
+
+/* flow: pipeline */
+.flow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.flowCaption {
+  font-size: min(30cqi, 10rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: var(--accent);
+}
+
+.flow ol {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.flowStep {
+  padding: 0.5rem 0.6rem;
+  border: var(--border-thin) solid var(--plate-fg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flowArrow {
+  padding-left: 0.75rem;
+  font-family: var(--font-mono);
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* pages: sitemap index */
+.pages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pages ol {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.3rem;
+}
+
+.pages li {
+  aspect-ratio: 3 / 4;
+  padding: 0.3rem;
+  border: var(--border-thin) solid var(--plate-line);
+  font-size: 0.625rem;
+}
+
+.pages li:first-child {
+  background: var(--plate-fg);
+  color: var(--plate-bg);
+}
+
+.pagesCaption {
+  font-size: min(20cqi, 6rem);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+/* figures: relative improvements */
+.figures {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.figures div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem;
+  border: var(--border-thin) solid var(--plate-line);
+}
+
+.figures dt {
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.figures dd {
+  color: var(--accent);
+}
+
+/* layers: z-index composition */
+.layers {
+  position: relative;
+  flex: 1;
+  min-height: 14rem;
+}
+
+.layer {
+  position: absolute;
+  width: 62%;
+  height: 52%;
+  padding: 0.6rem;
+  border: var(--border) solid var(--plate-fg);
+  background: var(--plate-bg);
+  transition: transform var(--dur) var(--ease);
+}
+
+.layer:nth-child(1) {
+  top: 0;
+  left: 0;
+  background: var(--accent);
+  color: var(--black);
+  border-color: var(--accent);
+}
+
+.layer:nth-child(2) {
+  top: 22%;
+  left: 19%;
+}
+
+.layer:nth-child(3) {
+  top: 44%;
+  left: 38%;
+}
+
+:global([data-project]:hover) .layer:nth-child(1) {
+  transform: translate(-6px, -6px);
+}
+
+:global([data-project]:hover) .layer:nth-child(3) {
+  transform: translate(6px, 6px);
+}

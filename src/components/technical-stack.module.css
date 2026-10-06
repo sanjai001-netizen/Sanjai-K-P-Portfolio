@@ -1,0 +1,124 @@
+.stack {
+  border-top: var(--border) solid var(--black);
+  overflow: clip;
+}
+
+.inner {
+  padding-block: var(--space-xl);
+}
+
+.spec {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: var(--border) solid var(--black);
+  border-left: var(--border) solid var(--black);
+}
+
+@media (min-width: 40em) {
+  .spec {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .spec {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  /* Intentional misalignment: the middle column sits lower. */
+  .cell:nth-child(3n + 2) {
+    transform: translateY(var(--space-m));
+  }
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 17rem;
+  padding: 1rem 1rem 2.5rem;
+  background: var(--white);
+  border-right: var(--border) solid var(--black);
+  border-bottom: var(--border) solid var(--black);
+  transition: box-shadow var(--dur) var(--ease), background-color var(--dur-fast);
+}
+
+.cellHead {
+  display: flex;
+  justify-content: space-between;
+  color: var(--grey);
+}
+
+.cellTitle {
+  margin-top: var(--space-m);
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.items {
+  margin-top: auto;
+  padding-top: var(--space-m);
+}
+
+.items li {
+  padding: 0.35rem 0;
+  border-top: var(--border-thin) solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.itemText {
+  position: relative;
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.tag {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.75rem;
+  font-size: 0.625rem;
+  color: var(--accent-ink);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--dur-fast), transform var(--dur) var(--ease);
+}
+
+.footnote {
+  margin-top: calc(var(--space-l) + var(--space-m));
+  color: var(--grey);
+}
+
+/* Decorative hover: emphasised borders, shifted text, restrained offset "glitch". */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cell:hover {
+    z-index: 1;
+    box-shadow: inset 0 0 0 var(--border) var(--black), 8px 8px 0 var(--accent);
+  }
+
+  .cell:hover .tag {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cell:hover .itemText {
+    transform: translateX(6px);
+  }
+
+  .cell:hover li:nth-child(even) .itemText {
+    transform: translateX(3px);
+  }
+
+  .cell:hover .itemText::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: var(--accent);
+    transform: translate(-2px, 1px);
+    clip-path: inset(55% 0 0 0);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,256 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--white);
+  border-bottom: var(--border) solid var(--black);
+}
+
+.bar {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-s);
+  height: calc(var(--header-h) - var(--border));
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-right: auto;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brandMark {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--accent);
+  border: 2px solid var(--black);
+  transition: transform var(--dur) var(--ease);
+}
+
+.brand:hover .brandMark,
+.brand:focus-visible .brandMark {
+  transform: rotate(45deg);
+}
+
+.status {
+  display: none;
+  align-self: center;
+  color: var(--black);
+}
+
+.status span {
+  color: var(--accent-ink);
+}
+
+/* --- desktop links --------------------------------------------------- */
+
+.desktopNav {
+  display: none;
+}
+
+.desktopNav ul {
+  display: flex;
+  height: 100%;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-left: var(--border-thin) solid var(--line);
+  transition: background-color var(--dur-fast), color var(--dur-fast);
+}
+
+/* Marker square: shape + inversion, not colour alone. */
+.link::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.5rem;
+  background: var(--accent);
+  transform: scale(0);
+  transition: transform var(--dur) var(--ease);
+}
+
+.link:hover::before,
+.link:focus-visible::before,
+.link[aria-current]::before {
+  transform: scale(1);
+}
+
+.link[aria-current] {
+  background: var(--black);
+  color: var(--white);
+}
+
+.link:focus-visible {
+  outline-offset: -4px;
+}
+
+/* --- mobile toggle --------------------------------------------------- */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  align-self: center;
+  padding: 0 0.9rem;
+  background: var(--black);
+  color: var(--white);
+  border: var(--border) solid var(--black);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--accent);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.toggle:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--accent);
+}
+
+.toggleIcon {
+  position: relative;
+  width: 1.1rem;
+  height: 2px;
+  background: currentColor;
+  transition: background-color var(--dur-fast);
+}
+
+.toggleIcon::before,
+.toggleIcon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease);
+}
+
+.toggleIcon::before {
+  transform: translateY(-5px);
+}
+
+.toggleIcon::after {
+  transform: translateY(5px);
+}
+
+.header[data-open] .toggleIcon {
+  background: transparent;
+}
+
+.header[data-open] .toggleIcon::before {
+  transform: rotate(45deg);
+}
+
+.header[data-open] .toggleIcon::after {
+  transform: rotate(-45deg);
+}
+
+/* --- mobile menu ----------------------------------------------------- */
+
+.menu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding: var(--space-m) var(--gutter) calc(var(--space-m) + env(safe-area-inset-bottom));
+  background: var(--black);
+  color: var(--white);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menuList {
+  border-top: var(--border-thin) solid var(--line-dark);
+}
+
+.menuLink {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  font-size: clamp(2.25rem, 11vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: var(--border-thin) solid var(--line-dark);
+  transition: color var(--dur-fast), transform var(--dur) var(--ease);
+}
+
+.menuLink:hover,
+.menuLink:focus-visible {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+.menuLink[aria-current] .menuIndex {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.menuIndex {
+  padding: 0.15rem 0.35rem;
+  border: var(--border-thin) solid currentColor;
+}
+
+.menuFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--grey-dark);
+  overflow-wrap: anywhere;
+}
+
+.menuFoot a {
+  color: var(--white);
+}
+
+@media (min-width: 56em) {
+  .desktopNav {
+    display: block;
+  }
+  .toggle,
+  .menu {
+    display: none;
+  }
+}
+
+@media (min-width: 80em) {
+  .status {
+    display: block;
+  }
+}

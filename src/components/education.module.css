@@ -1,0 +1,87 @@
+.education {
+  overflow: clip;
+}
+
+.inner {
+  padding-block: var(--space-xl);
+}
+
+.inner h2 {
+  font-size: clamp(2.5rem, 7vw, 7rem);
+}
+
+.archive {
+  display: grid;
+  gap: var(--space-l);
+}
+
+@media (min-width: 56em) {
+  .archive {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--col-gap);
+  }
+  .column + .column {
+    margin-top: var(--space-l);
+  }
+}
+
+.colTitle {
+  padding: 0.5rem 0.75rem;
+  background: var(--black);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.record {
+  position: relative;
+  padding: 1rem;
+  border: var(--border) solid var(--black);
+  border-top: 0;
+  background: var(--white);
+}
+
+.recId {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--grey);
+}
+
+.credential {
+  padding-right: 5rem;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.fields {
+  display: grid;
+  margin-top: 1rem;
+  border-top: var(--border-thin) solid var(--black);
+}
+
+.fields > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: var(--border-thin) dashed var(--line);
+}
+
+.fields dt {
+  padding-top: 0.2rem;
+  color: var(--grey);
+}
+
+.fields dd {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 24em) {
+  .fields > div {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}

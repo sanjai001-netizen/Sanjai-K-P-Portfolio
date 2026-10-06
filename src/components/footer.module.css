@@ -1,0 +1,41 @@
+.footer {
+  background: var(--black);
+  color: var(--white);
+  border-top: var(--border-thick) solid var(--black);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding-block: var(--space-m);
+  border-bottom: var(--border-thin) solid var(--line-dark);
+}
+
+.name,
+.role {
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.role {
+  color: var(--accent);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+  color: var(--grey-dark);
+}
+
+.bottom a {
+  color: var(--white);
+}
