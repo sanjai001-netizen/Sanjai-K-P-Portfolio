@@ -63,10 +63,11 @@ export function About() {
                   and monitoring.
                 </p>
                 <p>
-                  I currently build production frontend interfaces at Beegains Technology
-                  Solutions, alongside freelance work. Recent work includes an e-commerce
-                  storefront, an institutional website and business sites — several with measured
-                  gains in speed and stability.
+                  I built production frontend interfaces at Beegains Technology Solutions
+                  (May–October 2026), alongside freelance work. Recent work includes my own
+                  customisable business management platform, an e-commerce storefront, an
+                  institutional website and business sites — several with measured gains in
+                  speed and stability.
                 </p>
               </div>
 
